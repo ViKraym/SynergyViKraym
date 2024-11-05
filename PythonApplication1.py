@@ -3,7 +3,7 @@ print ('Вид питомца')
 typepit = input()
 
 print ('Возраст питомца')
-agepit = input()
+agepit = int(input())
 
 print ('Имя питомца')
 namepit = input()
@@ -32,3 +32,6 @@ f = input()
 
 
 print(a, b, c, d, e, f, sep="=>")
+
+
+#Проверка сихронизации с Git
