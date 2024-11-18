@@ -1,27 +1,27 @@
 #В связи с не совсем понятным описанием 1-го задания Урок 5 решил предоставить два способа решения каждый из которых по своему отвечает поставленному запросу в задании.
 
 # первый вариант решения
-a = int(input())
+# a = int(input())
 
 
-if a%2 == 0:
-    if a > 0:
-        print ("Число четное положительное")
-    elif a == 0:
-        print ("Число нулевое")
-    else: 
-        print ("Число четное отрицательное") 
+# if a%2 == 0:
+#     if a > 0:
+#         print ("Число четное положительное")
+#     elif a == 0:
+#         print ("Число нулевое")
+#     else: 
+#         print ("Число четное отрицательное") 
         
 
-elif a%2 != 0:
-    if a > 0:
-        print ("Число не четное положительное")
+# elif a%2 != 0:
+#     if a > 0:
+#         print ("Число не четное положительное")
         
-    elif a == 0:
-        print ("Число нулевое")
-    else:
-        print ("Число не четное отрицательное")
-    print("число не является четным")
+#     elif a == 0:
+#         print ("Число нулевое")
+#     else:
+#         print ("Число не четное отрицательное")
+#     print("число не является четным")
 
 # второй вариант решения
 
@@ -43,24 +43,18 @@ elif a%2 != 0:
 # А также определите количество каждой из этих гласных букв Если какой-то из перечисленных букв нет - Выведите False
 
 word = (input("Введите слово: ")) 
-a = word.count('a') 
-e = word.count('e') 
-i = word.count('i') 
-o = word.count('o') 
-u = word.count('u') 
-y = word.count('y') 
-if a == 0: 
-    print("a = False") 
-if e == 0: 
-    print("e = False") 
-if i == 0: 
-    print("i = False") 
-if o == 0: 
-    print("o = False") 
-if u == 0: 
-    print("u = False") 
-if y == 0: 
-    print("y = False") 
+a = word.count('a') if word.count('a') else False 
+e = word.count('e') if word.count('e') else False
+i = word.count('i') if word.count('i') else False
+o = word.count('o') if word.count('o') else False
+u = word.count('u') if word.count('u') else False
+
+print("a", a)
+print("e", e)
+print("i", i)
+print("o", o)
+print("u", u)
+
 print(f"Гласных: {a + e + i + o + u}") 
 print(f"Согласных: {len(word) - (a + e + i + o + u)}")
 
