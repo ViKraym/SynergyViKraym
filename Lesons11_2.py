@@ -24,11 +24,12 @@ while True:
     if command == "1":
         print("Укажите имя питомца:")
         name = input()
+        name.lower()
         card[name] = dict()
 
         print("Вид питомца:")
         tip_pit = input()
-        tip_pit
+        tip_pit.lower()
         card[name]["вид"] = tip_pit
 
         print("Возраст вашего питомца:")
@@ -47,7 +48,7 @@ while True:
 
         print("Имя владельца питомца:")
         owner_pit = input()
-        
+        owner_pit.lower()
         card[name]["хозяин"] = owner_pit
        
         print("\n""Карточка питомца успешно добавлен в Базу данных")
@@ -55,7 +56,7 @@ while True:
     elif command == "2":
         print("Назовите имя питомца, карту которого вы хотите посомотреть")
         name = input()
-        
+        name.lower()
         if name in card:
             print("\n""Это", card[name]['вид'], "по кличке", "'{}'".format(name), "Возраст питомца: ", card[name]['Возраст'], "Владельца зовут: ", card[name]['хозяин'])
         else:

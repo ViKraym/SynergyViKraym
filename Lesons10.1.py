@@ -76,16 +76,16 @@ while True:
     
     elif req == "2":
         print("Как зовут вашего питомца?")
-        name2 = input()
-        if name2 in company:
+        name = input()
+        if name in company:
             print("\n""Это", company[name]['вид'], "по кличке", name, "Возраст питомца: ", company[name]['Возраст'], "Владельца зовут: ", company[name]['хозяин'])
         else:
             print("\n""Простите, но такого питомца нам не оставляли")
 
     elif req == "0":
         print("Как зовут вашего питомца?")
-        name0 = input()
-        if name0 in company:
+        name = input()
+        if name in company:
             print("\n""Вот ваш питомец")
             company.pop(name)
         else:
