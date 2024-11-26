@@ -39,7 +39,8 @@
 company = dict()
     
 while True:
-    print("Добро пожаловать в клинику. Какой у вас вопрос?")
+    print()
+    print("Добро пожаловать в клинику. Какой у вас вопрос?""\n")
     print("1 - Записать питомца")
     print("2 - Посмотреть анкету питомца")
     print("0 - Забрать питомца")
@@ -64,39 +65,33 @@ while True:
         elif (21 > age_pit > 4) or (24 < age_pit < 31):
             ageUpd = str(age_pit) + " лет."
         elif (35 < age_pit < 1):
-            print("Ваш питомец либо еще не родился либо уже слишком стар. Извините.")
+            print("\n""Ваш питомец либо еще не родился либо уже слишком стар. Извините.")
             break
         company[name]["Возраст"] = ageUpd
         print("Имя владельца питомца:")
         owner_pit = input()
         company[name]["хозяин"] = owner_pit
         
+        print("\n""Ваш питомец успешно добавлен в список нашей клиники")
     
     elif req == "2":
         print("Как зовут вашего питомца?")
         name = input()
-        print("Это",company[name]['вид'], "по кличке", '"{}".'.format(name), "Возраст питомца: ", company[name]['Возраст'], "Владельца зовут: ", company[name]['хозяин'] )
-    
+        if name in company:
+            print("\n""Это", company[name]['вид'], "по кличке", '"{}".'.format(name), "Возраст питомца: ", company[name]['Возраст'], "Владельца зовут: ", company[name]['хозяин'])
+        else:
+            print("\n""Простите, но такого питомца нам не оставляли")
 
     elif req == "0":
         print("Как зовут вашего питомца?")
         name = input()
         if name in company:
-            print("Вот ваш питомец")
+            print("\n""Вот ваш питомец")
             company.pop(name)
         else:
-            print("Простите, но такого питомца нет")
+            print("\n""Простите, но такого питомца нет")
 
         
 
 
 
-# Задание 2
-
-
-# degree = {}
-
-# for i in range(10, -5-1, -1):
-#     degree[i] = i**i
-    
-# print(degree)
