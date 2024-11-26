@@ -57,17 +57,17 @@ while True:
 
         print("Возраст вашего питомца:")
         age_pit = int(input())
-        company[name]["Возраст"] = age_pit
-        if (age_pit == 1) or (age_pit == 21):
-            ageUpd = str(age_pit) + " год."
-        elif (5 > age_pit > 1) or (25 > age_pit > 21) or (35 > age_pit > 31):
-            ageUpd = str(age_pit) + " года."
-        elif (21 > age_pit > 4) or (24 < age_pit < 31):
-            ageUpd = str(age_pit) + " лет."
-        elif (35 < age_pit < 1):
-            print("\n""Ваш питомец либо еще не родился либо уже слишком стар. Извините.")
-            break
-        company[name]["Возраст"] = ageUpd
+        if (age_pit % 10 == 1) and (age_pit != 11) and (age_pit % 100 != 11):
+            year_case = str(age_pit) + ' год'
+
+        elif (1 < age_pit % 10 <= 4) and (age_pit != 12) and (age_pit != 13) and (age_pit != 14):
+            year_case = str(age_pit) + ' года'  
+            
+        else:
+            year_case = str(age_pit) + ' лет'
+        
+        company[name]["Возраст"] = year_case
+
         print("Имя владельца питомца:")
         owner_pit = input()
         company[name]["хозяин"] = owner_pit
@@ -76,22 +76,21 @@ while True:
     
     elif req == "2":
         print("Как зовут вашего питомца?")
-        name = input()
-        if name in company:
-            print("\n""Это", company[name]['вид'], "по кличке", '"{}".'.format(name), "Возраст питомца: ", company[name]['Возраст'], "Владельца зовут: ", company[name]['хозяин'])
+        name2 = input()
+        if name2 in company:
+            print("\n""Это", company[name]['вид'], "по кличке", name, "Возраст питомца: ", company[name]['Возраст'], "Владельца зовут: ", company[name]['хозяин'])
         else:
             print("\n""Простите, но такого питомца нам не оставляли")
 
     elif req == "0":
         print("Как зовут вашего питомца?")
-        name = input()
-        if name in company:
+        name0 = input()
+        if name0 in company:
             print("\n""Вот ваш питомец")
             company.pop(name)
         else:
             print("\n""Простите, но такого питомца нет")
 
         
-
 
 
