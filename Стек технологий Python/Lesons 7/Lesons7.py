@@ -14,7 +14,11 @@ else:
 # Дана строка, длина которой не превосходит 1000. Вам требуется преобразовать все идущие подряд пробелы в один. Выведите измененную строку.
 
 string = input().split()
-string_res = ""
-for i in string:
-    string_res += i+" "
-print(string_res)
+
+if len(string) <= 1000: 
+    string_res = ""
+    for i in string:
+        string_res += i+" "
+    print(string_res)
+else:
+    print("Введенная строка длинее 1000 символов")
