@@ -1,6 +1,6 @@
 import random
 
-n = 50
+n = 5
 arr = list()
 for i in range(n):
     number = random.randint(1, 100)
@@ -10,12 +10,12 @@ print("Not sorted:")
 print(arr)
 print("------")
 
-
 def qick_sort(arr):
     if len(arr) <= 1:
         return arr
     
-    index = random.randint(0, len(arr))
+    index = random.randint(0, len(arr)-1)
+    
     strong_elem = arr[index]
     low = list()
     mid = list()

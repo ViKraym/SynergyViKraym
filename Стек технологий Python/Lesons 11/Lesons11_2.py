@@ -1,79 +1,125 @@
+import collections
 
-# def get_suffix(age_pit):
+# pits = dict()
 
-    
+pits = {
+        1:
+            {
+                "Мухтар": {
+                    "Вид": "Собака",
+                    "Возраст": 9,
+                    "хозяин": "Павел"
+                },
+            },
+        2:
+            {
+                "Каа": {
+                    "Вид": "желторотый питон",
+                    "Возраст": 19,
+                    "хозяин": "Саша"
+                },
+            },
+        }
 
-   
-    
-    
+#============================================Воспамагательные=====================================================================
+def get_suffix(age):
+    remainder = age % 10
+    if age == 0 or remainder == 0 or remainder >= 5 or age in range(11,9):
+        suffix = 'лет'
+    elif remainder == 1:
+        suffix = 'год'
+    else:
+        suffix = 'года'
+    return suffix
+
+def get_pet(pet_id):
+    if pet_id in pits.keys():
+        return pits[pet_id]
+    else:
+        return False
+#=============================================Воспамагательные====================================================================
+
 
 def create():
-    
+              
+        if len(pits) == 0:
+            last = 0
+        else:
+            last = collections.deque(pits, maxlen=1)[0]
+        
+        last += 1
         print("Укажите имя питомца:")
-        name1 = input()
-        name = name1.lower()
-        card[name] = dict()
-
+        name = input()
+        card = name
+        pits[last] = dict()
+        pits[last][card] = dict()
+       
         print("Вид питомца:")
         tip_pit = input()
-        card[name]["вид"] = tip_pit.lower()
-
+        pits[last][card]["Вид"] = tip_pit
         
         print("Возраст вашего питомца:")
-        
         age_pit = int(input())
-       
-
-        if (age_pit % 10 == 1) and (age_pit != 11) and (age_pit % 100 != 11):
-                age_pit = str(age_pit) + ' год'
-
-        elif (1 < age_pit % 10 <= 4) and (age_pit != 12) and (age_pit != 13) and (age_pit != 14):
-            age_pit = str(age_pit) + ' года'  
-            
-        else:
-            age_pit = str(age_pit) + ' лет'
-
-        card[name]["Возраст"] = age_pit
+        pits[last][card]["Возраст"] = age_pit
         
-
         print("Имя владельца питомца:")
         owner_pit = input()
-        card[name]["хозяин"] = owner_pit.lower()
+        pits[last][card]["хозяин"] = owner_pit
        
-        print("\n""Карточка питомца успешно добавлен в Базу данных")
+        print("\n"f"Карточка питомца успешно добавлен в Базу данных под ID {last}" )
 
-def read():
-    print("Назовите имя питомца, карту которого вы хотите посомотреть")
-    name1 = input()
-    name = name1.lower()
-    if name in card:
-        print("\n""Это", card[name]['вид'], "по кличке", "'{}'".format(name), "Возраст питомца: ", card[name]['Возраст'], "Владельца зовут: ", card[name]['хозяин'])
-    else:
-        print("\n""Простите, но карточки такого питомца нет в нашей Базе")
+def read(pet_id):
+    pet = get_pet(pet_id)
+    if pet:
+        for pet_name in pet:
+            suffix = get_suffix(pet[pet_name]['Возраст'])
+            print("\n""Это", pet[pet_name]['Вид'] , "по кличке", pet_name, "Возраст питомца: ", pet[pet_name]['Возраст'], suffix, "Владельца зовут: ", pet[pet_name]['хозяин'])
+    else: 
+        print("\n""Карточки такого питомца нет в Базе данных")
 
-def update():
-    print("Назовите имя питомца, карту которого вы хотите отредактивровать?")
-    name1 = input()
-    name = name1.lower() 
-    if name in card:
-        print("\n""Что вы хотите изменить?")
-        print("\n""Имя питомца")
-        print("\n""Вид питомца")
-        print("\n""Возраст питомца")
-        print("\n""Имя хозяина")
-        
-    else:
-        print("\n""Простите, но такого питомца нет")
+def update(pet_id):
+    pet = get_pet(pet_id)
+    pet_name = input('Введите новое имя: ')
+    if pet_name == '':
+        for name in pet:
+            pet_name = name
 
-def delete():
-    print("Назовите имя питомца, карту которого вы хотите отредактивровать?")
-    name1 = input()
-    name = name1.lower()
-    if name in card:
-        print("\n""Карта питомца успешно удалена из Базы")
-        card.pop(name)
-    else:
-        print("\n""Простите, но карточки такого питомца нет в нашей Базе")
+    pet_tip = input('Введите новое вид: ')
+    if pet_tip == '':
+       pet_tip = pet[pet_name]["Вид"] 
+
+    pet_age = input('Введите новое возраст: ')
+    if pet_age == '':
+       pet_age = pet[pet_name]["Возраст"] 
+
+    pet_owner = input('Введите нового хозяина: ')
+    if pet_owner == '':
+       pet_owner = pet[pet_name]["хозяин"] 
+
+    pits[pet_id] = {
+                pet_name: {
+                    "Вид": pet_tip,
+                    "Возраст": int(pet_age),
+                    "хозяин": pet_owner
+                }
+            }
+    print(pits)
+   
+    
+def delete(pet_id):
+    val = get_pet(pet_id)
+    if val:
+        pits.pop(pet_id)
+        print(f'Карточка питомца с ID {pet_id} успешно удалена из БД')
+    return print("\n""Карточки такого питомца нет в Базе данных")
+
+def pets_list():
+    pass 
+
+
+
+#=================================================================================================================================#
+
 
 card = dict()
 
@@ -86,17 +132,26 @@ while command != 'stop':
     print("2 - Посмотреть карточку питомца")
     print("3 - Изменить существующую запись/внести корректировки")
     print("4 - Удалить запись о питомце")
-    print("Чтобы закончить работу с Базой данных - Введите stop")
+    print("Чтобы закончить работу с Базой данных - Введите stop"'\n')
 
     command = input()
     command.lower()
       
     if command == "1":
         create()
+
     elif command == "2":
-        read()
+        print("Введите ID питомца")
+        pet_id = int(input())
+        read(pet_id)
+
     elif command == "3":
-        update   
+        print("Введите ID питомца")
+        pet_id = int(input())
+        update(pet_id)  
+
     elif command == "4":
-        delete()
+        print("Введите ID питомца")
+        pet_id = int(input())
+        delete(pet_id)
   
