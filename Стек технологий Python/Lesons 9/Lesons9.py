@@ -64,4 +64,5 @@ for i in numb:
         print("YES")
     else:
         print("NO")
+        cur1.add(i)
 cur1.add(i)
