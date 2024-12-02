@@ -3,32 +3,32 @@
 
 # В первой строке вводится число N. Далее в N строк вводится N чисел (1 ≤ N ≤ 10000), по одному числу на строке. 
 # Все числа по модулю не превышают 10e5. Переверните массив чисел. Выведите N чисел - перевернутый массив.
-print("Задание №1")
-print("Введте количество строк:")
-N = int(input())
-print("Введте числа:")
-res = []
+            # print("Задание №1")
+            # print("Введте количество строк:")
+            # N = int(input())
+            # print("Введте числа:")
+            # res = []
 
-for j in range(N):
-    a = int(input())
-    if a >= 1 and a <= 10000:
-        res.append(a)
+            # for j in range(N):
+            #     a = int(input())
+            #     if a >= 1 and a <= 10000:
+            #         res.append(a)
 
-res.reverse()
-print(*res)
+            # res.reverse()
+            # print(*res)
 
 
 # Задание №2
 
 # В первую строчку вводится число B (1 ≤ B ≤ 100 000). В следующую строку через пробел вводятся B чисел (1 ≤ Ai ≤ 10e9). Вам требуется написать метод, который получает на вход массив и изменяет его таким образом, чтобы на первом месте стоял последний элемент, на втором - первый, на третьем - второй и т. д. Выведите N чисел - измененный массив.
-print("Задание №2")
-print("Введте количество чисел:")
-B = int(input())
-print("Введте числа через пробел:")
-res1 = list(map(int, input().split()))
-res1.insert(0, res1.pop()) # В ячейку с индексом 0 мы вставляем (.insert) значение удаленное(.pop) методом 
+        # print("Задание №2")
+        # print("Введте количество чисел:")
+        # B = int(input())
+        # print("Введте числа через пробел:")
+        # res1 = list(map(int, input().split()))
+        # res1.insert(0, res1.pop()) # В ячейку с индексом 0 мы вставляем (.insert) значение удаленное(.pop) методом 
 
-print(*res1)
+        # print(*res1)
 
     
 # Задание №3
@@ -41,44 +41,96 @@ print(*res1)
 
 print("Задание №3")
 print("Сколько выдержит лодка?")
-m = int(input())
-if 1 <= m <= 10e6:
-    print(" соответсвие условию")
+cnt_max_mass = int(input())
+if 1 <= cnt_max_mass <= 10e6:
+    print("Соответсвие условию")
 else:
-     print("не соответсвие условию")
+    print("Это лодка, а не крейсер"'\n')
+    exit()
 
-print("Сколько рыбаков?")
-n = int(input())
-if 1 <= n <= 100:
-    print("соответсвие условию")
+print("Сколько рыбаков нужно переправить?")
+fisherman = int(input())
+if 1 <= fisherman <= 100:
+    print("Соответсвие условию")
 else:
-     print("не соответсвие условию")
+    print("В лодку столько не поместится"'\n')
+    exit()
 
-res2 = []
+# список весов рыбака
+fisherman_list = list()
+# Заполняем список весов
+while len(fisherman_list) < fisherman:
+    for i in range(fisherman):
+        print(f'Введите вес {i+1} рыбака: ')
+        a = int(input())
+        if 1 <= a <= cnt_max_mass:
+            fisherman_list.append(a)
+# Сортировка списка весов рыбаков
+fisherman_list.sort()
+
+cnt = 0 # кол-во лодок для переправки
+first_fisherman = 0
+last_fisherman = fisherman - 1
 
 
-while len(res2) < n:
-    a = int(input())
-    if 1 <= a <= m:
-        res2.append(a)
-
-res2.sort()
-min = 0
-max = n - 1
-cnt = 0
-
-while min <= max:
-    sum = res2[min] + res2[max]
-    if res2[min] == res2[max]:
-        min += 1
-    elif sum <= m:
-        min += 1
-        max -= 1
+while first_fisherman <= last_fisherman:
+    cnt += 1
+    summ_mass =  fisherman_list[first_fisherman] + fisherman_list[last_fisherman]
+    if (summ_mass <= cnt_max_mass):
+        first_fisherman += 1
+        last_fisherman -= 1
     else:
-        max -= 1
-    cnt += 1 
-          
+        last_fisherman -= 1
+        
+print(fisherman_list)
 print(cnt)
+
+
+# print("Задание №3")
+# print("Сколько выдержит лодка?")
+# m = int(input())
+# if 1 <= m <= 10e6:
+#     print(" соответсвие условию")
+# else:
+#      print("не соответсвие условию")
+
+# print("Сколько рыбаков?")
+# n = int(input())
+# if 1 <= n <= 100:
+#     print("соответсвие условию")
+# else:
+#      print("не соответсвие условию")
+
+# res2 = []
+
+
+# while len(res2) < n:
+#     a = int(input())
+#     if 1 <= a <= m:
+#         res2.append(a)
+
+# res2.sort()
+ 
+# min = 0
+# max = n - 1
+# cnt = 0 #Кол-во лодок которые нужны
+
+
+# while min <= max:
+#     sum = res2[min] + res2[max]
+#     if (res2[min] == res2[max]) and (sum <= m):
+#         min += 1
+#     elif sum <= m:
+#         min += 1
+#         max -= 1
+#     else:
+#         max -= 1
+#     cnt += 1 
+          
+# print(cnt)
+
+
+
 
 
 
