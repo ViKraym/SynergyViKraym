@@ -118,7 +118,7 @@ print(cnt)
 
 # while min <= max:
 #     sum = res2[min] + res2[max]
-#     if (res2[min] == res2[max]) and (sum <= m):
+#     if (res2[min] == res2[max]):
 #         min += 1
 #     elif sum <= m:
 #         min += 1
