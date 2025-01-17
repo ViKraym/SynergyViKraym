@@ -12,7 +12,7 @@ from utils import randcell2
 
 CELL_TYPES = "🟩🌴🌊🏨🏪🔥"
 TREE_BONUS = 100
-
+FIRE_AND_COST = 20
 UPGRADE_COST = 5000
 LIFE_COST = 10000
 
@@ -97,14 +97,17 @@ class Map:
         if self.cells[cx][cy] == 1:
             self.cells[cx][cy] = 5
 
-    def appdate_fires(self):
+    def appdate_fires(self, helico):
         for ri in range(self.h):
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
                 if cell == 5:
                     self.cells[ri][ci] = 0
+                    helico.score -= FIRE_AND_COST
         for i in range(10):
             self.add_fire()
+
+            
 
     def process_helicopter(self, helico, clouds):
         c = self.cells[helico.x][helico.y]

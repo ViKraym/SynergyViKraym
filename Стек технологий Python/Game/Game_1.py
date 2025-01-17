@@ -6,10 +6,10 @@ from helicopter import Helicopter as Helico
 from pynput import keyboard
 from clouds import Clouds
 
-TICK_SLEEP = 0.05
+TICK_SLEEP = 0.5
 TREE_UPDATE = 50
 CLOUDS_UPDATE = 100
-FIRE_UPDATE = 75
+FIRE_UPDATE = 15
 MAP_W, MAP_H = 20, 10
 
 field = Map(MAP_W, MAP_H)
@@ -62,6 +62,6 @@ while True:
     if (tick % TREE_UPDATE == 0):
         field.generate_tree()
     if (tick % FIRE_UPDATE == 0):
-        field.appdate_fires()
+        field.appdate_fires(helico)
     if (tick % CLOUDS_UPDATE == 0):
         clouds.update()

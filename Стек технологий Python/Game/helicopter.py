@@ -28,6 +28,9 @@ class Helicopter:
         print("🎖️ ", self.score, end = " | ")
         print("❤️ ", self.lives)
     
+    
+
+
     def game_over(self):
         os.system("cls")
         print('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX')
