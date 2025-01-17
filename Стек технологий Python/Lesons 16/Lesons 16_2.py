@@ -16,7 +16,7 @@ class Turtle(object):
 
     def go_right(self):
         self.x += self.s
-    
+
     def evolve(self):
         self.s += 1
 
@@ -26,6 +26,41 @@ class Turtle(object):
         return "Шаг не может быть меньше 1"
     
     def count_moves(self, x2, y2):
-        return self.x - x2, self.y - y2
+        cnt = 0
+        while True:
+            if self.s < x2 - self.x:
+                if (x2 > 0) and self.x != x2:
+                    if (x2 < self.x):
+                        self.go_left()
+                    elif (x2 > self.x):
+                        self.go_right()
+                    cnt += 1
+            else:
+                self.degrade()
+                continue
 
-print(Turtle.count_moves)
+            if self.s < y2 - self.y:
+                self.degrade()
+                if (y2 > 0) and self.y != y2:
+                    if (y2 < self.y):
+                        self.go_down()
+                    elif (y2 > self.y):
+                        self.go_up()
+                    cnt += 1
+            else:
+                self.degrade()
+                continue
+            print(cnt)
+                # print(self.x, x2)
+                # print(self.y, y2)
+
+
+            if self.x == x2 and self.y == y2:
+                break
+        return cnt
+
+
+turtle = Turtle(0, 0, 6)
+
+print(turtle.count_moves(9,10))
+
